@@ -1,6 +1,0 @@
-{
-    "editor.maxTokenizationLineLength": 700000,
-    "editor.experimental.asyncTokenizationLogging": false,
-    "editor.wordWrap": "on",
-    "editor.formatOnSave": true
-}
