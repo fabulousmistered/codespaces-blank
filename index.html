@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendered XML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .line {
+            margin-bottom: 10px;
+        }
+        .latin {
+            font-weight: bold;
+        }
+        .english {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rendered XML</h1>
+        <div id="content"></div>
+    </div>
+
+    <!-- Embed the XML content -->
+    <script id="xml-data" type="text/xml">
+        <aligned-text xmlns="http://alpheios.net/namespaces/aligned-text">
+            <language lnum="L1" xml:lang="lat" dir="ltr"/>
+            <language lnum="L2" xml:lang="eng" dir="ltr"/>
+            <comment class="title">metamorphoses</comment>
+            <sentence id="1" document_id="urn:cts:latinLit:phi0959.phi006.perseus-lat2:1.1-1.779">
+                <wds lnum="L1">
+                    <w n="1-1"><text>In</text></w>
+                    <w n="1-2"><text>nova</text></w>
+                    <w n="1-3"><text>fert</text></w>
+                    <w n="1-4"><text>animus</text></w>
+                    <w n="1-5"><text>mutatas</text></w>
+                    <w n="1-6"><text>dicere</text></w>
+                    <w n="1-7"><text>formascorpora</text></w>
+                    <w n="1-8"><text>;</text></w>
+                    <w n="2-1"><text>di</text></w>
+                    <w n="2-2"><text>,</text></w>
+                    <w n="2-3"><text>coeptis</text></w>
+                    <w n="2-4"><text>(</text></w>
+                    <w n="2-5"><text>nam</text></w>
+                    <w n="2-6"><text>vos</text></w>
+                    <w n="2-7"><text>mutastis</text></w>
+                    <w n="2-8"><text>et</text></w>
+                    <w n="2-9"><text>illas</text></w>
+                    <w n="2-10"><text>)</text></w>
+                    <w n="2-11"><text>adspirate</text></w>
+                    <w n="2-12"><text>meis</text></w>
+                    <w n="2-13"><text>primaque</text></w>
+                    <w n="2-14"><text>ab</text></w>
+                    <w n="2-15"><text>origine</text></w>
+                    <w n="2-16"><text>mundiad</text></w>
+                    <w n="2-17"><text>mea</text></w>
+                    <w n="2-18"><text>perpetuum</text></w>
+                    <w n="2-19"><text>deducite</text></w>
+                    <w n="2-20"><text>tempora</text></w>
+                    <w n="2-21"><text>carmen</text></w>
+                    <w n="2-22"><text>.</text></w>
+                </wds>
+                <wds lnum="L2">
+                    <w n="1-1"><text>My</text></w>
+                    <w n="1-2"><text>mind</text></w>
+                    <w n="1-3"><text>drives</text></w>
+                    <w n="1-4"><text>me</text></w>
+                    <w n="1-5"><text>to</text></w>
+                    <w n="1-6"><text>speak</text></w>
+                    <w n="1-7"><text>of</text></w>
+                    <w n="1-8"><text>forms</text></w>
+                    <w n="1-9"><text>changed</text></w>
+                    <w n="1-10"><text>into</text></w>
+                    <w n="1-11"><text>new</text></w>
+                    <w n="2-1"><text>bodies;</text></w>
+                    <w n="2-2"><text>gods,</text></w>
+                    <w n="2-3"><text>wrest</text></w>
+                    <w n="2-4"><text>my</text></w>
+                    <w n="2-5"><text>work</text></w>
+                    <w n="2-6"><text>(for</text></w>
+                    <w n="2-7"><text>that,</text></w>
+                    <w n="2-8"><text>too,</text></w>
+                    <w n="2-9"><text>you</text></w>
+                    <w n="2-10"><text>changed),</text></w>
+                    <w n="2-11"><text>and</text></w>
+                    <w n="2-12"><text>from</text></w>
+                    <w n="2-13"><text>the</text></w>
+                    <w n="2-14"><text>first</text></w>
+                    <w n="2-15"><text>start</text></w>
+                    <w n="2-16"><text>of</text></w>
+                    <w n="2-17"><text>the</text></w>
+                    <w n="2-18"><text>world</text></w>
+                    <w n="2-19"><text>to</text></w>
+                    <w n="2-20"><text>my</text></w>
+                    <w n="2-21"><text>own</text></w>
+                    <w n="2-22"><text>times,</text></w>
+                    <w n="2-23"><text>spin</text></w>
+                    <w n="2-24"><text>a</text></w>
+                    <w n="2-25"><text>steady</text></w>
+                    <w n="2-26"><text>lay.</text></w>
+                </wds>
+            </sentence>
+        </aligned-text>
+    </script>
+
+    <script>
+        // Function to parse and render the XML content
+        function renderXML() {
+            const xmlData = document.getElementById('xml-data').textContent;
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
+            const sentences = xmlDoc.getElementsByTagName('sentence');
+            const contentDiv = document.getElementById('content');
+
+            for (let i = 0; i < sentences.length; i++) {
+                const sentence = sentences[i];
+                const latinWords = sentence.querySelectorAll('wds[lnum="L1"] w text');
+                const englishWords = sentence.querySelectorAll('wds[lnum="L2"] w text');
+
+                const latinLine = Array.from(latinWords).map(word => word.textContent).join(' ');
+                const englishLine = Array.from(englishWords).map(word => word.textContent).join(' ');
+
+                const lineDiv = document.createElement('div');
+                lineDiv.classList.add('line');
+                lineDiv.innerHTML = `
+                    <div class="latin">${latinLine}</div>
+                    <div class="english">${englishLine}</div>
+                `;
+                contentDiv.appendChild(lineDiv);
+            }
+        }
+
+        // Render the XML content when the page loads
+        window.onload = renderXML;
+    </script>
+</body>
+</html>
